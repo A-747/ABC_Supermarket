@@ -11,6 +11,7 @@ namespace ABC_Supermarket.Server.Context
     public class DatabaseContext : DbContext
     {
         //public DatabaseContext(DbContextOptions options) : base(options) { }
+        //adding a comment to test commit
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
         public DbSet<ItemDetails> Item { get; set; }
     }
