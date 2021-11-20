@@ -1,0 +1,21 @@
+﻿<h3>Items</h3>
+
+@page "/Items"
+@inject HttpClient http
+@inject NavigationManager uriHelper
+@inject IJSRuntime js
+@using ABC_Supermarket.Shared.Models
+
+<From ButtonText="Save" itemobj="itemobj" 
+      OnValidSubmit="@CreateItem"/>
+
+@code{
+    ItemDetails itemobj = new ItemDetails();
+    async Task CreateItem()
+    {
+        await http.PostAsJsonAsync("api/ItemDetails/CreateItem", itemobj); 
+                            //added the action name along with api/ItemDetails
+        await js.InvokeVoidAsync("alert", $"Inserted Successfully!");
+        uriHelper.NavigateTo("Items");
+    }
+}
