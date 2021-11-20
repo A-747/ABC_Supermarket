@@ -1,4 +1,5 @@
 ﻿<h3>From</h3>
+
 @using ABC_Supermarket.Shared.Models
 
 <EditForm Model="@itemobj" OnValidSubmit="@OnValidSubmit">
@@ -9,6 +10,7 @@
             <InputNumber @bind-Value="@itemobj.ItemCode" />
             <ValidationMessage For="@(() => itemobj.ItemCode)" />
         </div>
+        <a class="btn btn-success" href="CURD/FetchItem/1">...</a>
     </div>
     <div class="form-group">
         <label>Item Name :</label>

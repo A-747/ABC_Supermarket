@@ -6,16 +6,19 @@
 @inject IJSRuntime js
 @using ABC_Supermarket.Shared.Models
 
-<From ButtonText="Save" itemobj="itemobj" 
-      OnValidSubmit="@CreateItem"/>
+
+<From ButtonText="Save" itemobj="itemobj"
+      OnValidSubmit="@CreateItem" />
+
 
 @code{
     ItemDetails itemobj = new ItemDetails();
     async Task CreateItem()
     {
-        await http.PostAsJsonAsync("api/ItemDetails/CreateItem", itemobj); 
-                            //added the action name along with api/ItemDetails
+        await http.PostAsJsonAsync("api/ItemDetails/CreateItem", itemobj);
+        //added the action name along with api/ItemDetails
         await js.InvokeVoidAsync("alert", $"Inserted Successfully!");
-        uriHelper.NavigateTo("Items");
+        uriHelper.NavigateTo("Items", true);
     }
+    
 }
