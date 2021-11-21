@@ -7,8 +7,7 @@
 @using ABC_Supermarket.Shared.Models
 @inject HttpClient client
 
-<From ButtonText="Save" itemobj="itemobj"
-      OnValidSubmit="@CreateItem" />
+<From ButtonText="Save" itemobj="itemobj" OnValidSubmit="@CreateItem" />
 
 
 
@@ -16,10 +15,19 @@
     ItemDetails itemobj = new ItemDetails();
     async Task CreateItem()
     {
-        await http.PostAsJsonAsync("api/ItemDetails/CreateItem", itemobj);
-        //added the action name along with api/ItemDetails
-        await js.InvokeVoidAsync("alert", $"Inserted Successfully!");
+        var retval = await http.PostAsJsonAsync("api/ItemDetails/CreateItem", itemobj);
+        string value = await retval.Content.ReadAsStringAsync(); //right!
+        if (value == itemobj.ItemName)
+        {
+            await js.InvokeVoidAsync("alert", $"Inserted Successfully!");
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", $"already exists!");
+        }
+
+
         uriHelper.NavigateTo("Items", true);
     }
-    
+
 }

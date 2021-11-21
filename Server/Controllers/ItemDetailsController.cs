@@ -24,9 +24,14 @@ namespace ABC_Supermarket.Server.Controllers
         [Route("[action]")]
         public async Task<IActionResult> CreateItem(ItemDetails itemObj)
         {
-            _dbContext.Add(itemObj);
-            await _dbContext.SaveChangesAsync();
-            return Ok(itemObj.ItemCode);
+            var ObjItem = await _dbContext.Item.FirstOrDefaultAsync(p => p.ItemName == itemObj.ItemName);
+            if (ObjItem == null)
+            {
+                _dbContext.Add(itemObj);
+                await _dbContext.SaveChangesAsync();
+                return Ok(itemObj.ItemName); 
+            }
+            return null;
         }
         [HttpGet]
         public async Task<IActionResult> Getitems()

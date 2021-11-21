@@ -22,11 +22,17 @@
     protected override async Task OnInitializedAsync()
 
     {
-        //int ItemId = ItemCode;
-        //itemobj = Items.First(x => x.ItemCode == ItemId);
-        //var itemDetailsObj = await client.GetFromJsonAsync<ItemDetails>($"api/ItemDetails/{ItemCode}");
-        itemobj = await client.GetFromJsonAsync<ItemDetails>($"api/ItemDetails/{ItemCode}");
-        //uriHelper.NavigateTo("CURD/Form/" + itemDetailsObj.ToString());
+
+        try
+        {
+            itemobj = await client.GetFromJsonAsync<ItemDetails>($"api/ItemDetails/{ItemCode}");
+        }
+        catch (Exception ex)
+        {
+            await js.InvokeVoidAsync("alert", $"No such records found!");
+            uriHelper.NavigateTo("Items", true);
+        }
+
     }
     async Task UpdateItem()
     {
