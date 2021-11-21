@@ -5,10 +5,11 @@
 @inject NavigationManager uriHelper
 @inject IJSRuntime js
 @using ABC_Supermarket.Shared.Models
-
+@inject HttpClient client
 
 <From ButtonText="Save" itemobj="itemobj"
       OnValidSubmit="@CreateItem" />
+<button class="btn btn-danger" @onclick="@(() => Delete(itemobj.ItemCode))">Delete</button>
 
 
 @code{
@@ -20,5 +21,14 @@
         await js.InvokeVoidAsync("alert", $"Inserted Successfully!");
         uriHelper.NavigateTo("Items", true);
     }
-    
+    async Task Delete(int ItemId)
+    {
+        //var dev = Items.First(x => x.ItemCode == developerId);
+        if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {itemobj.ItemName}'s ({itemobj.ItemCode}) Record?"))
+        {
+            await client.DeleteAsync($"api/ItemDetails/{ItemId}");
+            //await OnInitializedAsync();
+            uriHelper.NavigateTo("Items");
+        }
+    }
 }
