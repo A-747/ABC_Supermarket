@@ -56,12 +56,5 @@ namespace ABC_Supermarket.Server.Controllers
             await _dbContext.SaveChangesAsync();
             return NoContent();
         }
-        [HttpPost]
-        
-        public ItemDetails ClearAllData(ItemDetails itemObj)
-        {
-            ItemDetails itemObjNew = new ItemDetails();
-            return itemObjNew;
-        }
     }
 }
