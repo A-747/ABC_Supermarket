@@ -1,0 +1,25 @@
+﻿<h3>Delete</h3>
+@page "/CURD/Delete/{ItemCode:int}"
+@inject NavigationManager uriHelper
+@using ABC_Supermarket.Shared.Models
+@inject HttpClient client
+@inject IJSRuntime js
+
+
+
+@code {
+    [Parameter] public int ItemCode { get; set; }
+    ////[Parameter] public ItemDetails itemobj { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        //var dev = Items.First(x => x.ItemCode == developerId);
+        //if (await js.InvokeAsync<bool>("confirm", $"Do you want to delete {itemobj.ItemName}'s ({itemobj.ItemCode}) Record?"))
+       if (await js.InvokeAsync<bool>("confirm", $"This record will be deleted."))
+        {
+            await client.DeleteAsync($"api/ItemDetails/{ItemCode}");
+            //await OnInitializedAsync();
+            uriHelper.NavigateTo("Items",true);
+        }
+    }
+}

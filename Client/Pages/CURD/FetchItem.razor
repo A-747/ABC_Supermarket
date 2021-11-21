@@ -8,7 +8,8 @@
 
 @*<button class="btn btn-success" id="idcode" @onclick="@(() => FetchitemDetails(itemobj.ItemCode))">...</button>*@
 @*<From ButtonText="Update" itemobj="itemobj" OnValidSubmit="@(() => UpdateItem(itemobj.ItemCode))" />*@
-<From  itemobj="itemobj"/>
+@*<From  itemobj="itemobj"/>*@
+<From ButtonText="Save" itemobj="itemobj" OnValidSubmit="@UpdateItem" />
 
 
 @code {
@@ -26,5 +27,12 @@
         //var itemDetailsObj = await client.GetFromJsonAsync<ItemDetails>($"api/ItemDetails/{ItemCode}");
         itemobj = await client.GetFromJsonAsync<ItemDetails>($"api/ItemDetails/{ItemCode}");
         //uriHelper.NavigateTo("CURD/Form/" + itemDetailsObj.ToString());
+    }
+    async Task UpdateItem()
+    {
+        await client.PostAsJsonAsync("api/ItemDetails/UpdateItem", itemobj);
+        //added the action name along with api/ItemDetails
+        await js.InvokeVoidAsync("alert", $"Updated Successfully!");
+        uriHelper.NavigateTo("Items", true);
     }
 }

@@ -40,6 +40,8 @@ namespace ABC_Supermarket.Server.Controllers
             var ObjItem = await _dbContext.Item.FirstOrDefaultAsync(p => p.ItemCode == id);
             return Ok(ObjItem);
         }
+        [HttpPost]
+        [Route("[action]")]
         public async Task<IActionResult> UpdateItem(ItemDetails itemObj)
         {
             _dbContext.Entry(itemObj).State = EntityState.Modified;
