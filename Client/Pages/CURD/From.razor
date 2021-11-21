@@ -10,7 +10,7 @@
             <InputNumber @bind-Value="@itemobj.ItemCode" />
             <ValidationMessage For="@(() => itemobj.ItemCode)" />
         </div>
-        <a class="btn btn-success" href="CURD/FetchItem/1">...</a>
+        <a class="btn btn-success" href="CURD/FetchItem/@itemobj.ItemCode">...</a>
     </div>
     <div class="form-group">
         <label>Item Name :</label>
