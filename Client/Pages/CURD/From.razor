@@ -38,8 +38,8 @@
         </div>
     </div>
 
-    <button class="btn btn-success" onclick="@ClearData()">Clear</button>
-    
+    <a class="btn btn-success" href="CURD/Clear">Clear</a>
+
 
     <button type="submit" class="btn btn-success">
         @ButtonText
@@ -51,12 +51,5 @@
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 
-    ItemDetails ClearData()
-    {
-        itemobj.ItemCode = 0;
-        itemobj.ItemName = null;
-        itemobj.Stock = 0;
-        itemobj.UnitPrice = 0;
-        return itemobj;
-    }
+   
 }

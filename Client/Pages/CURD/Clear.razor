@@ -1,0 +1,14 @@
+﻿<h3>Clear</h3>
+@page "/CURD/Clear"
+@inject NavigationManager uriHelper
+@using ABC_Supermarket.Shared.Models
+
+@*<From itemobj="itemobj" />*@
+
+@code {
+    //ItemDetails itemobj;
+    protected override async Task OnInitializedAsync()
+    {
+        uriHelper.NavigateTo("Items", true);
+    }
+}

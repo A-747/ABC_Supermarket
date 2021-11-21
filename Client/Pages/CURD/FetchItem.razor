@@ -8,7 +8,7 @@
 
 @*<button class="btn btn-success" id="idcode" @onclick="@(() => FetchitemDetails(itemobj.ItemCode))">...</button>*@
 @*<From ButtonText="Update" itemobj="itemobj" OnValidSubmit="@(() => UpdateItem(itemobj.ItemCode))" />*@
-
+<From  itemobj="itemobj"/>
 
 
 @code {
@@ -23,7 +23,8 @@
     {
         //int ItemId = ItemCode;
         //itemobj = Items.First(x => x.ItemCode == ItemId);
-        var itemDetailsObj = await client.GetFromJsonAsync<ItemDetails>($"api/ItemDetails/{ItemCode}");
+        //var itemDetailsObj = await client.GetFromJsonAsync<ItemDetails>($"api/ItemDetails/{ItemCode}");
+        itemobj = await client.GetFromJsonAsync<ItemDetails>($"api/ItemDetails/{ItemCode}");
         //uriHelper.NavigateTo("CURD/Form/" + itemDetailsObj.ToString());
     }
 }
