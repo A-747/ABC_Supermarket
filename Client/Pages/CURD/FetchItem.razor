@@ -6,16 +6,13 @@
 @using ABC_Supermarket.Shared.Models
 
 
-@*<button class="btn btn-success" id="idcode" @onclick="@(() => FetchitemDetails(itemobj.ItemCode))">...</button>*@
-@*<From ButtonText="Update" itemobj="itemobj" OnValidSubmit="@(() => UpdateItem(itemobj.ItemCode))" />*@
-@*<From  itemobj="itemobj"/>*@
+
 <From ButtonText="Save" itemobj="itemobj" OnValidSubmit="@UpdateItem" />
 
 
 @code {
 
-    //[Parameter] public ItemDetails itemobj { get; set; }
-    //ItemDetails[] Items { get; set; }
+    
     [Parameter] public int ItemCode { get; set; }
     ItemDetails itemobj;
 
